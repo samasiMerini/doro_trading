@@ -65,6 +65,11 @@ def removeTicker(ticker,type,pds):
                 print("remove ticker")
                 del tickerToSell[tks]
 
+def increasePrice(price,pBuy):
+    # % increase = Increase ÷ Original Number × 100.
+    increase = ((pBuy - price)/price)*100
+    return (round(increase,2))
+    
 def touchGreenLine(pds,df,ticker):
     result = calculate_Zscore(pds,df)
     score = float(result.tail(1).values)
@@ -74,8 +79,9 @@ def touchGreenLine(pds,df,ticker):
     isTimeToSell = isTickerBuyOrSellSend(ticker,"SELL",pds)
 
     pocValue = vp_strtg.getPoc(ticker=ticker)
+    increase = increasePrice(float(close),float(pocValue))
     if score <= -2.5 and score > -4 and not isTimeToBuy:
-        message = f"Chri {ticker}, {round(score,2)} bhad taman  {close} o bi3o  mli iwsal: {pocValue}"
+        message = f"Chri {ticker}, {round(score,2)} bhad taman  {close} o bi3o  mli iwsal: {pocValue} | {increase}%"
         addTickerToBuyList(ticker,pds) 
     elif score <= -4 :
         message= f"Chri 3ad {ticker} ila kayn 💰💰 {round(score,2)}...!"
