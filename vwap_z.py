@@ -81,15 +81,15 @@ def touchGreenLine(pds,df,ticker):
     pocValue = vp_strtg.getPoc(ticker=ticker)
     increase = increasePrice(float(close),float(pocValue))
     if score <= -2.5 and score > -4 and not isTimeToBuy:
-        message = f"Chri {ticker}, {round(score,2)} bhad taman  {close} o bi3o  mli iwsal: {pocValue} | {increase}%"
+        message = f"🟢🟢🟢 Chri {ticker}, {round(score,2)} /n bhad taman  {close} o bi3o  mli iwsal: {pocValue} | {increase}%"
         addTickerToBuyList(ticker,pds) 
     elif score <= -4 :
-        message= f"Chri 3ad {ticker} ila kayn 💰💰 {round(score,2)}...!"
+        message= f"🟢🟢🟢 Chri 3ad {ticker} ila kayn 💰💰 {round(score,2)}...!"
     elif score > 2.5 and score < 4 and not isTimeToSell:
-         message =f"ila 3adndk  {ticker}  {round(score,2)}, bi3o rah wsal: {close} 💰💰💰 "
+         message =f"🔴🔴🔴 ila 3adndk  {ticker}  {round(score,2)}, bi3o rah wsal: {close} 💰💰💰 "
          addTickerToSellList(ticker,pds) 
     elif score >= 4:
-        message =f"Ila ba9i 3andk  {ticker} bi3o daba {round(score,2)}, {close}"
+        message =f"🔴🔴🔴 Ila ba9i 3andk  {ticker} bi3o daba {round(score,2)}, {close}"
     else:
         message = f"tracking {ticker} pds {pds}, realtime price is: {close} and point of control is: {pocValue} ======> {round(score,2)}"
 
